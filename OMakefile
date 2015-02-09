@@ -1,0 +1,11 @@
+ODG_FILES = $(glob */fig/*.odg)
+PNG_FILES = $(replacesuffixes .odg, .png, $(ODG_FILES))
+
+.DEFAULT: $(PNG_FILES)
+
+.SUBDIRS: $(glob */fig/)
+	%.png: %.odg
+		unoconv -f png -o $@.tmp $< || unoconv -n -f png -o $@.tmp $< \
+		|| unoconv -f png -o $@.tmp $< || unoconv -n -f png -o $@.tmp $<
+		convert -resize 600x $@.tmp $@
+		rm -f $@.tmp
