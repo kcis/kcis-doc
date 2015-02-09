@@ -4,4 +4,4 @@
 
 ## 状態遷移
 
-![](./fig/whole_map.odg)
+![](./fig/whole_map.png)
